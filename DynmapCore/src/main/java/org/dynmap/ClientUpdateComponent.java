@@ -13,6 +13,7 @@ public class ClientUpdateComponent extends Component {
     private int hideifunder;
     private boolean hideifsneaking;
     private boolean hideifinvisiblepotion;
+    private boolean hideIfTacticallyInvisible;
     private boolean is_protected;
     public static boolean usePlayerColors;
     public static boolean hideNames;
@@ -25,6 +26,7 @@ public class ClientUpdateComponent extends Component {
         hideifunder = configuration.getInteger("hideifundercover", 15);
         hideifsneaking = configuration.getBoolean("hideifsneaking", false);
         hideifinvisiblepotion = configuration.getBoolean("hide-if-invisiblity-potion", true);
+        hideIfTacticallyInvisible = configuration.getBoolean("hide-if-tactically-invisible", false);
         is_protected = configuration.getBoolean("protected-player-info", false);
         usePlayerColors = configuration.getBoolean("use-name-colors", false);
         if(is_protected)
@@ -111,7 +113,9 @@ public class ClientUpdateComponent extends Component {
             if((!hide) && hideifinvisiblepotion && p.isInvisible()) {
                 hide = true;
             }
-                
+            if((!hide) && hideIfTacticallyInvisible && p.isTacticallyInvisible()) {
+                hide = true;
+            }
             /* Don't leak player location for world not visible on maps, or if sendposition disbaled */
             DynmapWorld pworld = MapManager.mapman.worldsLookup.get(pl.world);
             /* Fix typo on 'sendpositon' to 'sendposition', keep bad one in case someone used it */

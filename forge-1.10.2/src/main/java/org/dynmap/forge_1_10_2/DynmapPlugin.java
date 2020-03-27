@@ -1312,6 +1312,13 @@ public class DynmapPlugin
         	return false;
         }
         @Override
+        public boolean isTacticallyInvisible() {
+            if(player != null) {
+                return player.hasMetadata("tacticallyInvisible");
+            }
+            return false;
+        }
+        @Override
         public int getSortWeight() {
             Integer wt = sortWeights.get(getName());
             if (wt != null)
@@ -1384,7 +1391,7 @@ public class DynmapPlugin
         @Override
         public boolean hasPermissionNode(String node) {
             return true;
-        } 
+        }
     }
 
     public void loadExtraBiomes(String mcver) {

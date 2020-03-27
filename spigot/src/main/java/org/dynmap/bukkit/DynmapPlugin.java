@@ -61,6 +61,7 @@ import org.bukkit.event.world.SpawnChangeEvent;
 import org.bukkit.event.world.StructureGrowEvent;
 import org.bukkit.event.world.WorldLoadEvent;
 import org.bukkit.event.world.WorldUnloadEvent;
+import org.bukkit.metadata.MetadataValue;
 import org.bukkit.permissions.Permission;
 import org.bukkit.permissions.PermissionDefault;
 import org.bukkit.plugin.Plugin;
@@ -691,6 +692,13 @@ public class DynmapPlugin extends JavaPlugin implements DynmapAPI {
         public boolean isInvisible() {
             if(player != null) {
                 return player.hasPotionEffect(PotionEffectType.INVISIBILITY);
+            }
+            return false;
+        }
+        @Override
+        public boolean isTacticallyInvisible() {
+            if(player != null) {
+                return player.hasMetadata("tacticallyInvisible");
             }
             return false;
         }

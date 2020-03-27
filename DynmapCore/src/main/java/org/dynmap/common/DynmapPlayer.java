@@ -75,6 +75,16 @@ public interface DynmapPlayer extends DynmapCommandSender {
      */
     public boolean isInvisible();
     /**
+     * Is tactically invisible
+     *
+     * This indicates that the player is not necessarily invisible to the eye,
+     * but has become invisible on the map through some means.
+     * The tactical invisibility status is communicated to dynmap using player metadata
+     *
+     * @return true if tactically invisible
+     */
+    public boolean isTacticallyInvisible();
+    /**
      * Get sort weight (ordered lowest to highest in player list: 0=default)
      * @return sort weight
      */
